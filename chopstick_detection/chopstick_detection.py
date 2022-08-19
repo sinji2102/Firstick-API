@@ -13,7 +13,7 @@ while True :
     blur = cv.GaussianBlur(gray, (3, 3), 0)
     canny = cv.Canny(blur, 1000, 2000, apertureSize = 5, L2gradient = True)
 
-    line = cv.HoughLinesP(canny, 0.8, np.pi / 180 , 90, minLineLength = 10, maxLineGap = 100)
+    line = cv.HoughLinesP(canny, 0.5, np.pi / 180 , 30, minLineLength = 1, maxLineGap = 70)
 
     if line is not None :
         # 확률적 허프 변환
