@@ -11,14 +11,23 @@ while True :
     dst = resize.copy()
     gray = cv.cvtColor(resize, cv.COLOR_BGR2GRAY)
     blur = cv.GaussianBlur(gray, (3, 3), 0)
-    canny = cv.Canny(blur, 1000, 2000, apertureSize = 5, L2gradient = True)
+    canny = cv.Canny(blur, 700, 2000, apertureSize = 5, L2gradient = True)
 
-    line = cv.HoughLinesP(canny, 0.5, np.pi / 180 , 30, minLineLength = 1, maxLineGap = 70)
+    line = cv.HoughLinesP(canny, 0.5, np.pi / 180 , 30, minLineLength = 5, maxLineGap = 30)
+
+    arr = []
+    x11, y11, x12, y12, x21, y21, x22, y22 = 0, 0, 0, 0, 0, 0, 0, 0
 
     if line is not None :
-        # 확률적 허프 변환
         for i in line :
-            cv.line(dst, (int(i[0][0]), int(i[0][0])), (int(i[0][2]), int(i[0][3])), (0, 0, 255), 2)
+            (a1, b1, a2, b2) = i[0]
+            if a1 > 310 :   # 빨간색 라인
+                cv.line(resize, (a1, b1), (a2, b2), (0, 0, 255), 2)
+                x11 = a1
+                y11 = b1
+                x12 = a2
+                y12 = b2
+
 
     cv.imshow("resize", resize)
     # cv.imshow("gray", gray)
