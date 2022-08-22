@@ -1,7 +1,7 @@
 import cv2 as cv
 import numpy as np
 
-cap = cv.VideoCapture('C:/Users/sinji/Desktop/firstick/src/A.mp4')
+cap = cv.VideoCapture('C:/Users/sinji/Desktop/firstick/src/B.mp4')
 
 while True :    
 
@@ -15,23 +15,15 @@ while True :
 
     line = cv.HoughLinesP(canny, 0.2, np.pi / 180 , 30, minLineLength = 400, maxLineGap = 150)
 
-    arr = []
-    x11, y11, x12, y12, x21, y21, x22, y22 = 0, 0, 0, 0, 0, 0, 0, 0
-
     if line is not None :
         for i in line :
             (a1, b1, a2, b2) = i[0]
-            cv.line(resize, (a1, b1), (a2, b2), (0, 0, 255), 2)
-            x11 = a1
-            y11 = b1
-            x12 = a2
-            y12 = b2
-
+            if abs(b1 - b2) < 70 :
+                cv.line(resize, (a1, b1), (a2, b2), (0, 0, 255), 2)
 
     cv.imshow("resize", resize)
-    # cv.imshow("gray", gray)
     cv.imshow("canny", canny)
-    cv.imshow("dst", dst)
+    # cv.imshow("dst", dst)
 
     key = cv.waitKey(5)
     if key == 27 :
