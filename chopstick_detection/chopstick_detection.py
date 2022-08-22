@@ -11,9 +11,9 @@ while True :
     dst = resize.copy()
     gray = cv.cvtColor(resize, cv.COLOR_BGR2GRAY)
     blur = cv.GaussianBlur(gray, (3, 3), 0)
-    canny = cv.Canny(blur, 700, 2000, apertureSize = 5, L2gradient = True)
+    canny = cv.Canny(blur, 800, 2000, apertureSize = 5, L2gradient = True)
 
-    line = cv.HoughLinesP(canny, 0.5, np.pi / 180 , 30, minLineLength = 5, maxLineGap = 30)
+    line = cv.HoughLinesP(canny, 0.2, np.pi / 180 , 30, minLineLength = 400, maxLineGap = 150)
 
     arr = []
     x11, y11, x12, y12, x21, y21, x22, y22 = 0, 0, 0, 0, 0, 0, 0, 0
@@ -21,12 +21,11 @@ while True :
     if line is not None :
         for i in line :
             (a1, b1, a2, b2) = i[0]
-            if a1 > 310 :   # 빨간색 라인
-                cv.line(resize, (a1, b1), (a2, b2), (0, 0, 255), 2)
-                x11 = a1
-                y11 = b1
-                x12 = a2
-                y12 = b2
+            cv.line(resize, (a1, b1), (a2, b2), (0, 0, 255), 2)
+            x11 = a1
+            y11 = b1
+            x12 = a2
+            y12 = b2
 
 
     cv.imshow("resize", resize)
@@ -34,6 +33,6 @@ while True :
     cv.imshow("canny", canny)
     cv.imshow("dst", dst)
 
-    key = cv.waitKey(10)
+    key = cv.waitKey(5)
     if key == 27 :
         break
