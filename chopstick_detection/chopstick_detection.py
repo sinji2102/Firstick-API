@@ -58,3 +58,5 @@ while True :
     key = cv.waitKey(5)
     if key == 27 :
         break
+
+# 0819_01까지 커밋 완료
