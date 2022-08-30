@@ -16,13 +16,14 @@ y = df['class']
 
 ###############################
 
-X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.5, random_state=42)
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.6, random_state=1800)
 
 # print
 print('Train shape:')
 print(X_train.shape)
 print(X_test.shape)
-print('\nTest Shape:')
+print('-------------------')
+print('Test Shape:')
 print(y_train.shape)
 print(y_test.shape)
 
@@ -30,21 +31,21 @@ print(y_test.shape)
 
 
 # 랜덤 포레스트 분류
-rc = RandomForestClassifier()
-model = rc.fit(X_train, y_train)
-y_pred = model.predict(X_test)
+# rc = RandomForestClassifier()
+# model = rc.fit(X_train, y_train)
+# y_pred = model.predict(X_test)
 
 
-print(accuracy_score(y_test, y_pred))
+# print(accuracy_score(y_test, y_pred))
 
 ################################
 
 
 # 로지스틱 회귀
-# lr = LogisticRegression()
-# model = lr.fit(X_train, y_train)
-# y_pred = model.predict(X_test)
-# print(accuracy_score(y_test, y_pred))
+lr = LogisticRegression()
+model = lr.fit(X_train, y_train)
+y_pred = model.predict(X_test)
+print(accuracy_score(y_test, y_pred))
 
 
 # 사이킷런 모델 export -> 추후 tf model 형식으로 변환해야함
