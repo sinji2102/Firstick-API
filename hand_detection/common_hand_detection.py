@@ -36,6 +36,7 @@ with mp_hands.Hands(
                     image, hand_landmarks, mp_hands.HAND_CONNECTIONS)
  
         cv2.imshow('image', image)
+        print(hand_landmarks)
         if cv2.waitKey(1) == ord('q'):
             break
  
