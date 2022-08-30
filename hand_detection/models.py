@@ -48,5 +48,5 @@ print(accuracy_score(y_test, y_pred))
 
 
 # 사이킷런 모델 export -> 추후 tf model 형식으로 변환해야함
-with open('test.pkl', 'wb') as f:
+with open('./assets/test.pkl', 'wb') as f:
     pickle.dump(model, f)

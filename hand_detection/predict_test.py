@@ -13,7 +13,6 @@ with open('test.pkl', 'rb') as f:
     model = pickle.load(f)
 
 
-
 # webCam으로 테스트
 cap = cv2.VideoCapture(0)
 
