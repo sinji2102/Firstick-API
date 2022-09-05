@@ -56,14 +56,18 @@ with mp_hands.Hands(
       a = [landmarks.landmark for landmarks in hand]
       b = [data for data in a]
 
-      hand_row = []
+      hand_row = [] 
+      y = []
+      z = []
       for landmarks in hand:
           for data in landmarks.landmark:
             hand_row.append(data.x)
             hand_row.append(data.y)
             hand_row.append(data.z)
+            y.append(np.round(data.y, 5))
+            z.append(np.round(data.z, 5))
 
-          # 손 landmarks+line 그려주기
+          # Draw hand line 
           mp_drawing.draw_landmarks(
               image, landmarks, mp_hands.HAND_CONNECTIONS)
 
