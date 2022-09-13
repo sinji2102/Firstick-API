@@ -9,7 +9,7 @@ mp_drawing = mp.solutions.drawing_utils
 mp_hands = mp.solutions.hands
 
 # models.py에서 생성한 모델 불러오기
-with open('test.pkl', 'rb') as f:
+with open('chopsticks.pkl', 'rb') as f:
     model = pickle.load(f)
 
 
